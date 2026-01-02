@@ -1,0 +1,35 @@
+version: 1
+validation: sovereign
+default_denom: usample
+build:
+  proto:
+    path: proto
+    third_party_paths:
+    - third_party/proto
+    - proto_vendor
+genesis:
+  chain_id: samplechain-1
+accounts: 
+- name: alice
+  coins:
+  - 20000token
+  - 200000000usample
+- name: bob
+  coins:
+  - 10000token
+  - 100000000usample
+client:
+  openapi:
+    path: docs/static/openapi.json
+faucet:
+  name: bob
+  coins:
+  - 5token
+  - 100000usample
+validators:
+- name: alice
+  bonded: 100000000usample
+- name: validator1
+  bonded: 200000000usample
+- name: validator2
+  bonded: 100000000stake
