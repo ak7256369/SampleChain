@@ -1,8 +1,16 @@
+const getEndpoint = (port) => {
+    if (typeof window !== 'undefined' && window.location.hostname.includes('github.dev')) {
+        const portRegex = /-[0-9]+\.app\.github\.dev/
+        return `https://${window.location.hostname.replace(portRegex, `-${port}.app.github.dev`)}`
+    }
+    return `http://localhost:${port}`;
+}
+
 export const chainInfo = {
     chainId: "samplechain-1",
     chainName: "Sample Chain",
-    rpc: "http://localhost:26657",
-    rest: "http://localhost:1317",
+    rpc: getEndpoint(26657),
+    rest: getEndpoint(1317),
     bip44: {
         coinType: 118,
     },
